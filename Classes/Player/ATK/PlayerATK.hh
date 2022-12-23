@@ -1,15 +1,18 @@
-#include "Player.hh"
+#include "../Player.hh"
 
 class PlayerATK : public Player
 {
 
 private:
-    int shoot;
-    int skill;
+    int _shoot;
+    int _skill;
 
 public:
-    Move moveDir();
-    Move moveShoot();
-    PlayerATK(Team team, string name, int number, int rate, int pace, int shoot, int skill);
+    int _getShoot();
+    int _getSkill();
+
+    Move moveDir(Direction direction);
+    Move moveShoot(Direction direction);
+    PlayerATK(string name, int number, int pace, int shoot, int skill);
     ~PlayerATK();
 };

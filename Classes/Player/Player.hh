@@ -1,22 +1,23 @@
 #pragma once
 #include <string>
-#include "Move.hh"
-#include "Team.hh"
+#include "Move/Move.hh"
 
 using namespace std;
 
 class Player
 {
 
-private:
-    Team team;
-    string name;
-    int number;
-    int rate;
-    int pace;
+protected:
+    string _name;
+    int _number;
+    int _rate;
+    int _pace;
 
 public:
+    string _getName();
+    int _getNumber();
     int _getPace();
     int _getRate();
-    virtual Move moveDir();
+
+    virtual Move moveDir(Direction direction) = 0;
 };

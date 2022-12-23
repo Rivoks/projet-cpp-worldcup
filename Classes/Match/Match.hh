@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <list>
+#include <map>
 #include "Team.hh"
 
 using namespace std;
@@ -9,16 +10,21 @@ class Match
 {
 
 private:
-    list<Team> teams;
-    int time;
-    bool finish;
+    static int matchId;
+    list<Team> _teams;
+    int _time;
+    bool _finish;
+    map<int, int> _score;
+    map<int, int> _shoots;
 
 public:
-    int getTime();
-    list<int> getTeamList();
+    int _getTime();
+    list<Team> _getTeamList();
+    bool _getMatchStatus();
 
-    bool getMatchStatus();
     void updateMatchStatus();
+    void updateMatchScore(map<int, int> newScore);
+    void updateMatchShoots(map<int, int> newShoots);
 
     Match(list<Team> teams);
     ~Match();

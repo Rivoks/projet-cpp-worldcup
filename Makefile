@@ -15,4 +15,5 @@ run:
 	$(EXEC)
 
 clean: 
-	rm -rf $(MOVE_DIR)/*.o *.o $(EXEC)
+	find . -name "*.o" -type f -delete
+	rm $(EXEC)

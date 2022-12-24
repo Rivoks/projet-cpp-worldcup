@@ -1,3 +1,4 @@
+#pragma once
 #include "../Player.hh"
 
 class PlayerATK : public Player
@@ -8,8 +9,8 @@ private:
     int _skill;
 
 public:
-    int _getShoot();
-    int _getSkill();
+    int _getShoot() const;
+    int _getSkill() const;
 
     Move moveDir(Direction direction);
     Move moveShoot(Direction direction);

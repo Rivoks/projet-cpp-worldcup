@@ -14,10 +14,10 @@ protected:
     int _pace;
 
 public:
-    string _getName();
-    int _getNumber();
-    int _getPace();
-    int _getRate();
+    string _getName() const;
+    int _getNumber() const;
+    int _getPace() const;
+    int _getRate() const;
 
     virtual Move moveDir(Direction direction) = 0;
 };

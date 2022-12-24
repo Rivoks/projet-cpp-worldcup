@@ -12,12 +12,12 @@ PlayerATK::PlayerATK(string name, int number, int pace, int shoot, int skill)
 
 PlayerATK::~PlayerATK(){};
 
-int PlayerATK::_getShoot()
+int PlayerATK::_getShoot() const
 {
     return _shoot;
 };
 
-int PlayerATK::_getSkill()
+int PlayerATK::_getSkill() const
 {
     return _skill;
 };

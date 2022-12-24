@@ -1,15 +1,23 @@
-#include "Player.hh"
+#pragma once
+#include "../Player.hh"
+#include "../ATK/PlayerATK.hh"
 
 class PlayerDEF : public Player
 {
 
 private:
-    int def;
-    int stamina;
+    int _def;
+    int _stamina;
 
 public:
-    Move moveDir();
-    Move moveTackle();
-    PlayerDEF(Team team, string name, int number, int rate, int pace, int def, int stamina);
+    int _getDef();
+    int _getStamina();
+
+    Move moveDir(Direction direction);
+    bool moveHandle(PlayerATK playerAtk);
+
+    PlayerDEF(string name, int number, int pace, int def, int stamina);
     ~PlayerDEF();
+
+    float operator-(PlayerATK const &playerAtk);
 };

@@ -6,9 +6,9 @@ MOVE_DIR=Classes/Player/Move
 PLAYER_DIR=Classes/Player
 
 all: main.o move.o player.o
-	$(CC) $(CCFLAGS) main.cc $(MOVE_DIR)/Move.cc $(PLAYER_DIR)/Player.cc $(PLAYER_DIR)/ATK/PlayerATK.cc -o $(EXEC)
+	$(CC) $(CCFLAGS) main.cc $(MOVE_DIR)/Move.cc $(PLAYER_DIR)/Player.cc $(PLAYER_DIR)/ATK/PlayerATK.cc $(PLAYER_DIR)/DEF/PlayerDEF.cc -o $(EXEC)
 
-player.o: $(PLAYER_DIR)/Player.o $(PLAYER_DIR)/ATK/PlayerATK.o
+player.o: $(PLAYER_DIR)/Player.o $(PLAYER_DIR)/ATK/PlayerATK.o $(PLAYER_DIR)/DEF/PlayerDEF.o
 move.o: $(MOVE_DIR)/Move.o
 
 run: 

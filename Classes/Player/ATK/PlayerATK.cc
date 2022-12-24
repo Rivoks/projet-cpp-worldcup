@@ -22,7 +22,7 @@ int PlayerATK::_getSkill() const
     return _skill;
 };
 
-bool PlayerATK::moveDir(Direction direction, PlayerDEF playerDef)
+bool PlayerATK::moveDribble(Direction direction, PlayerDEF playerDef)
 {
     return false;
 };

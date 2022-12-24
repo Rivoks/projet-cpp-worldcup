@@ -4,13 +4,6 @@
 
 using namespace std;
 
-// typedef struct MoveParams
-// {
-//     Direction direction;
-//     PlayerATK playerAtk;
-//     PlayerDEF playerDef;
-// };
-
 class Player
 {
 
@@ -25,8 +18,4 @@ public:
     int _getNumber() const;
     int _getPace() const;
     int _getRate() const;
-
-    // virtual bool moveDir(Direction direction) = 0;
-    // virtual bool moveDir(MoveParams moveParams) = 0;
-    // virtual bool moveDir(Direction direction, PlayerATK atk = pessi, PlayerDEF def = h) = 0;
 };

@@ -15,8 +15,8 @@ public:
     int _getShoot() const;
     int _getSkill() const;
 
-    bool moveDir(Direction direction, PlayerDEF playerDef);
-    bool moveShoot(Direction direction);
+    virtual bool moveShoot(Direction direction);
+    bool moveDribble(Direction direction, PlayerDEF playerDef);
 
     PlayerATK(string name, int number, int pace, int shoot, int skill);
     ~PlayerATK();

@@ -1,10 +1,13 @@
 #pragma once
+#include <cstdlib>
+#include <ctime>
+#include <stddef.h>
 
 enum Direction
 {
     LEFT,
+    CENTER,
     RIGHT,
-    CENTER
 };
 
 class Move

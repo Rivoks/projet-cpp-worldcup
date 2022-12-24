@@ -24,27 +24,21 @@ int PlayerDEF::_getStamina()
     return _stamina;
 };
 
-/** Tackle a player */
-// bool PlayerDEF::moveDir(Direction direction, PlayerATK playerAtk)
-// {
-//     std::srand(std::time(nullptr));
-//     int random = std::rand();
-
-//     Move moveAtk(float((playerAtk._getPace() + playerAtk._getSkill()) / 200.0));
-//     Move moveDef(direction, float((_stamina + _def) / 200.0));
-
-//     bool sameDir = moveDef._getDirection() == moveAtk._getDirection();
-
-//     if (sameDir)
-//         return float(random % 100) / 100.0 < 0.7 + (moveDef._getAccuracy() - moveAtk._getAccuracy());
-
-//     return float(random % 100) / 100.0 < 0.15 + (moveDef._getAccuracy() - moveAtk._getAccuracy());
-// };
-
-bool PlayerDEF::moveDir(Direction direction, PlayerATK playerAtk)
+bool PlayerDEF::moveTackle(Direction direction, PlayerATK playerAtk)
 {
-    return false;
-}
+    std::srand(std::time(nullptr));
+    int random = std::rand();
+
+    Move moveAtk(float((playerAtk._getPace() + playerAtk._getSkill()) / 200.0));
+    Move moveDef(direction, float((_stamina + _def) / 200.0));
+
+    bool sameDir = moveDef._getDirection() == moveAtk._getDirection();
+
+    if (sameDir)
+        return float(random % 100) / 100.0 < 0.7 + (moveDef._getAccuracy() - moveAtk._getAccuracy());
+
+    return float(random % 100) / 100.0 < 0.15 + (moveDef._getAccuracy() - moveAtk._getAccuracy());
+};
 
 bool PlayerDEF::moveHandle(PlayerATK playerAtk)
 {

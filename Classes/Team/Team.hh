@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <list>
-#include "Player.hh"
+#include "../Player/Player.hh"
 
 using namespace std;
 

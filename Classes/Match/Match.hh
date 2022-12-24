@@ -2,7 +2,7 @@
 #include <string>
 #include <list>
 #include <map>
-#include "Team.hh"
+#include "../Team/Team.hh"
 
 using namespace std;
 

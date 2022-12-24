@@ -10,15 +10,7 @@ PlayerATK::PlayerATK(string name, int number, int pace, int shoot, int skill)
     _rate = (pace + shoot + skill) / 3;
 };
 
-PlayerATK::~PlayerATK()
-{
-    delete &_name;
-    delete &_number;
-    delete &_rate;
-    delete &_pace;
-    delete &_shoot;
-    delete &_skill;
-};
+PlayerATK::~PlayerATK(){};
 
 int PlayerATK::_getShoot()
 {
@@ -41,3 +33,8 @@ Move PlayerATK::moveShoot(Direction direction)
     Move move(direction, 0.75);
     return move;
 };
+
+int PlayerATK::operator+(PlayerATK const &player)
+{
+    return (_rate + player._rate) / 2;
+}

@@ -15,4 +15,6 @@ public:
     Move moveShoot(Direction direction);
     PlayerATK(string name, int number, int pace, int shoot, int skill);
     ~PlayerATK();
+
+    int operator+(PlayerATK const &player);
 };

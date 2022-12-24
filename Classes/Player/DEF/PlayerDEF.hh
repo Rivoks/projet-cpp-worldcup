@@ -2,6 +2,8 @@
 #include "../Player.hh"
 #include "../ATK/PlayerATK.hh"
 
+class PlayerATK;
+
 class PlayerDEF : public Player
 {
 
@@ -13,7 +15,7 @@ public:
     int _getDef();
     int _getStamina();
 
-    Move moveDir(Direction direction);
+    bool moveDir(Direction direction, PlayerATK playerAtk);
     bool moveHandle(PlayerATK playerAtk);
 
     PlayerDEF(string name, int number, int pace, int def, int stamina);

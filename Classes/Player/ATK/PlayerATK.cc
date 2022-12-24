@@ -22,19 +22,13 @@ int PlayerATK::_getSkill() const
     return _skill;
 };
 
-Move PlayerATK::moveDir(Direction direction)
+bool PlayerATK::moveDir(Direction direction, PlayerDEF playerDef)
 {
-    Move move(direction, 0.5);
-    return move;
+    return false;
 };
 
-Move PlayerATK::moveShoot(Direction direction)
+bool PlayerATK::moveShoot(Direction direction)
 {
-    Move move(direction, 0.75);
-    return move;
-};
 
-int PlayerATK::operator+(PlayerATK const &player)
-{
-    return (_rate + player._rate) / 2;
-}
+    return false;
+};

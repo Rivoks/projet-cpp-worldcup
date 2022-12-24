@@ -14,9 +14,12 @@ private:
     float _accuracy;
 
 public:
-    Direction _getDirection();
-    float _getAccuracy();
+    Direction _getDirection() const;
+    float _getAccuracy() const;
 
+    Direction pickDirection(int pick);
+
+    Move(float accuracy);
     Move(Direction direction, float accuracy);
     ~Move();
 };

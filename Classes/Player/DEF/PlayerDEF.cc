@@ -1,3 +1,5 @@
+#include <ctime>
+#include <cstdlib>
 #include "PlayerDEF.hh"
 
 PlayerDEF::PlayerDEF(string name, int number, int pace, int def, int stamina)
@@ -22,16 +24,34 @@ int PlayerDEF::_getStamina()
     return _stamina;
 };
 
-Move PlayerDEF::moveDir(Direction direction)
+/** Tackle a player */
+// bool PlayerDEF::moveDir(Direction direction, PlayerATK playerAtk)
+// {
+//     std::srand(std::time(nullptr));
+//     int random = std::rand();
+
+//     Move moveAtk(float((playerAtk._getPace() + playerAtk._getSkill()) / 200.0));
+//     Move moveDef(direction, float((_stamina + _def) / 200.0));
+
+//     bool sameDir = moveDef._getDirection() == moveAtk._getDirection();
+
+//     if (sameDir)
+//         return float(random % 100) / 100.0 < 0.7 + (moveDef._getAccuracy() - moveAtk._getAccuracy());
+
+//     return float(random % 100) / 100.0 < 0.15 + (moveDef._getAccuracy() - moveAtk._getAccuracy());
+// };
+
+bool PlayerDEF::moveDir(Direction direction, PlayerATK playerAtk)
 {
-    Move move(direction, _stamina / 100);
-    return move;
-};
+    return false;
+}
 
 bool PlayerDEF::moveHandle(PlayerATK playerAtk)
 {
-    // return this - playerAtk;
-    return false;
+    std::srand(std::time(nullptr));
+    int random = std::rand();
+
+    return float(random % 100) / 100.0 < 0.5 + (*this - playerAtk);
 };
 
 float PlayerDEF::operator-(PlayerATK const &playerAtk)

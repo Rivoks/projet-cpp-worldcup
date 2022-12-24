@@ -1,13 +1,17 @@
-#include "Player.hh"
+#pragma once
+#include "../Player.hh"
+#include "../ATK/PlayerATK.hh"
 
 class PlayerGK : public Player
 {
 
 private:
-    int loon;
+    int _loon;
 
 public:
-    Move moveDir();
-    PlayerGK(Team team, string name, int number, int rate, int pace, int loon, int stamina);
+    bool moveDir(Direction direction, PlayerATK playerAtk);
+    int _getLoon() const;
+    float operator-(PlayerATK const &playerAtk);
+    PlayerGK(string name, int number, int pace, int loon);
     ~PlayerGK();
 };

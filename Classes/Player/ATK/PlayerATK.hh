@@ -1,5 +1,8 @@
 #pragma once
 #include "../Player.hh"
+#include "../DEF/PlayerDEF.hh"
+
+class PlayerDEF;
 
 class PlayerATK : public Player
 {
@@ -12,10 +15,9 @@ public:
     int _getShoot() const;
     int _getSkill() const;
 
-    Move moveDir(Direction direction);
-    Move moveShoot(Direction direction);
+    bool moveDir(Direction direction, PlayerDEF playerDef);
+    bool moveShoot(Direction direction);
+
     PlayerATK(string name, int number, int pace, int shoot, int skill);
     ~PlayerATK();
-
-    int operator+(PlayerATK const &player);
 };

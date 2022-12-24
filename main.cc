@@ -2,15 +2,23 @@
 #include "Classes/Player/ATK/PlayerATK.hh"
 #include "Classes/Player/DEF/PlayerDEF.hh"
 
+void test(int a = 0, int b = 0, int c = 0)
+{
+    std::cout << "a" << a << std::endl;
+    std::cout << "b" << b << std::endl;
+    std::cout << "c" << c << std::endl;
+}
+
 int main()
 {
-    PlayerATK player1("Ronaldo", 7, 81, 92, 85);
-    PlayerATK player2("Messi", 10, 85, 92, 91);
-    PlayerDEF player3("Hakimi", 2, 95, 76, 78);
+    PlayerATK ronaldo("Ronaldo", 7, 81, 92, 85);
+    PlayerATK messi("Messi", 10, 85, 92, 91);
+    PlayerDEF hakimi("Hakimi", 2, 95, 76, 78);
 
-    // std::cout << player1 + player2 << std::endl;
+    // params.playerAtk = messi;
 
-    std::cout << player3 - player2 << std::endl;
+    // std::cout << (hakimi.moveDir(params) ? "Not Pass" : "Pass") << std::endl;
+    std::cout << (hakimi.moveHandle(messi) ? "Not Pass" : "Pass") << std::endl;
 
     return 0;
 }

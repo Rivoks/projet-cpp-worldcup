@@ -17,5 +17,5 @@ public:
     Move playerAction(Direction direction = RANDOM);
 
     PlayerGK(string name, int number, int pace, int loon);
-    ~PlayerGK();
+    virtual ~PlayerGK();
 };

@@ -19,7 +19,7 @@ public:
     Move playerAction(Direction direction);
 
     PlayerDEF(string name, int number, int pace, int def, int stamina);
-    ~PlayerDEF();
+    virtual ~PlayerDEF();
 
     float operator-(PlayerATK const &playerAtk);
 };

@@ -4,20 +4,24 @@
 #include "Classes/Player/DEF/PlayerDEF.hh"
 #include "Classes/Player/GK/PlayerGK.hh"
 #include "Classes/Action/Action.hh"
+#include "Classes/Team/Team.hh"
 
-Direction intToDirection(int input)
+void createTeam()
 {
-    switch (input % 3)
-    {
-    case 0:
-        return LEFT;
+    PlayerATK ronaldo("Ronaldo", 7, 81, 92, 85);
+    PlayerATK messi("Messi", 10, 91, 84, 88);
+    PlayerDEF hakimi("Hakimi", 2, 95, 76, 78);
+    PlayerDEF ramos("Ramos", 4, 88, 80, 72);
+    PlayerGK bono("Bono", 13, 79, 86);
 
-    case 1:
-        return CENTER;
+    vector<PlayerATK> atk{ronaldo, messi};
+    vector<PlayerDEF> def{ramos, hakimi};
 
-    default:
-        return RIGHT;
-    }
+    Team team(atk, def, bono, "Blue Dragon");
+    std::cout << team._getName() << std::endl;
+    std::cout << "GEN:" << team._getGenRate() << std::endl;
+    std::cout << "ATK:" << team._getAtkRate() << std::endl;
+    std::cout << "DEF:" << team._getDefRate() << std::endl;
 }
 
 void _game()
@@ -62,7 +66,9 @@ void _game()
 
 int main()
 {
-    _game();
+    // _game();
+
+    createTeam();
 
     return 0;
 }

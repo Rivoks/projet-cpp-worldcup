@@ -9,9 +9,6 @@ PlayerATK::PlayerATK(string name, int number, int pace, int shoot, int skill)
     _shoot = shoot;
     _skill = skill;
     _rate = (pace + shoot + skill) / 3;
-
-    _directionName = "Dribble";
-    _actionName = "Shoot";
 };
 
 PlayerATK::~PlayerATK(){};

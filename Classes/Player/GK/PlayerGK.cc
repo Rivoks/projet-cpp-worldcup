@@ -5,6 +5,7 @@
 PlayerGK::PlayerGK(string name, int number, int pace, int loon)
 {
     _name = name;
+    _role = GK;
     _number = number;
     _pace = pace;
     _loon = loon;

@@ -22,6 +22,7 @@ private:
 public:
     Direction _getDirection() const;
     float _getAccuracy() const;
+    void _setAccuracy(float newAccuracy);
 
     Move(float accuracy);
     Move(Direction direction, float accuracy);

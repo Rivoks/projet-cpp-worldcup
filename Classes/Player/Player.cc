@@ -20,6 +20,11 @@ int Player::_getRate() const
     return _rate;
 }
 
+PlayerRole Player::_getRole() const
+{
+    return _role;
+}
+
 Move Player::pickMove(int action, int direction)
 {
     if (action > 0)

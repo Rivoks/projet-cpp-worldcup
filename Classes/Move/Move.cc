@@ -29,6 +29,11 @@ float Move::_getAccuracy() const
     return _accuracy;
 }
 
+void Move::_setAccuracy(float newAccuracy)
+{
+    _accuracy = newAccuracy;
+}
+
 bool Move::operator-(Move const &moveIA)
 {
     return _accuracy - moveIA._getAccuracy() > 0;

@@ -3,6 +3,7 @@
 #include "Classes/Player/ATK/PlayerATK.hh"
 #include "Classes/Player/DEF/PlayerDEF.hh"
 #include "Classes/Player/GK/PlayerGK.hh"
+#include "Classes/Action/Action.hh"
 
 Direction intToDirection(int input)
 {
@@ -27,65 +28,23 @@ int main()
     PlayerDEF hakimi("Hakimi", 2, 95, 76, 78);
     PlayerGK bono("Bono", 13, 79, 86);
 
-    vector<PlayerATK> players;
+    vector<PlayerATK> playerSelections;
 
-    players.push_back(ronaldo);
-    players.push_back(messi);
+    playerSelections.push_back(ronaldo);
+    playerSelections.push_back(messi);
 
     int entry = 0;
     std::cout << "Pick a Striker: Ronadlo(0) - Messi(1)" << std::endl;
     std::cin >> entry;
 
-    PlayerATK player1 = players[entry];
+    PlayerATK player = playerSelections[entry];
 
-    int pickMove;
-    int pickDir;
+    Action action1(player._getRole(), hakimi._getRole());
 
-    std::cout << "Choose an action: \n"
-              << "0 - Dribble\n"
-              << "1 - Shoot\n"
-              << std::endl;
+    if (action1.startAction(player, hakimi, bono))
+        std::cout << "You have passed the defense!" << std::endl;
+    else
+        std::cout << "Defense stopped you!" << std::endl;
 
-    std::cin >> pickMove;
-
-    std::cout << "Choose a direction to dribble: \n"
-              << "0 - Left\n"
-              << "1 - Center\n"
-              << "2 - Right\n"
-              << std::endl;
-
-    std::cin >> pickDir;
-
-    Move move1 = player1.pickMove(pickMove, pickDir);
-    Move move2 = hakimi.pickMove();
-
-    std::cout << "Move1 Accuracy:\n"
-              << move1._getAccuracy()
-              << std::endl;
-
-    std::cout << "Move2 Accuracy:\n"
-              << move2._getAccuracy()
-              << std::endl;
-
-    /**
-     * if (move1 - move2)
-    {
-        std::cout << "Dribble has not passed!" << std::endl;
-        return 0;
-    }
-
-    std::cout << "Dribble has passed!" << std::endl;
-
-    std::cout << "Choose a direction to shoot: \n"
-              << "0 - Left\n"
-              << "1 - Center\n"
-              << "2 - Right\n"
-              << std::endl;
-    std::cin >> pickDir;
-
-    bool action2 = player1.moveShoot(intToDirection(pickDir), bono);
-    std::cout << (action2 ? "GOOOOAAAAAL!" : "Shoot has not passed!") << std::endl;
-     *
-     */
     return 0;
 }

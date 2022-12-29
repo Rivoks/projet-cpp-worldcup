@@ -16,8 +16,6 @@ class Player
 
 protected:
     string _name;
-    string _directionName;
-    string _actionName;
     PlayerRole _role;
     int _number;
     int _rate;
@@ -25,6 +23,7 @@ protected:
 
 public:
     string _getName() const;
+    PlayerRole _getRole() const;
     int _getNumber() const;
     int _getPace() const;
     int _getRate() const;

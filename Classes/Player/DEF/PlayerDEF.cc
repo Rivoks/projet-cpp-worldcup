@@ -5,6 +5,7 @@
 PlayerDEF::PlayerDEF(string name, int number, int pace, int def, int stamina)
 {
     _name = name;
+    _role = DEF;
     _number = number;
     _pace = pace;
     _def = def;

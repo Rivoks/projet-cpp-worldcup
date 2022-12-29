@@ -1,31 +1,31 @@
 #pragma once
 #include <string>
-#include <list>
+#include <vector>
 #include <map>
 #include "../Team/Team.hh"
 
 using namespace std;
 
+static int matchId = 0;
+
 class Match
 {
-
 private:
-    static int matchId;
-    list<Team> _teams;
+    vector<Team> _teams;
     int _time;
     bool _finish;
-    map<int, int> _score;
-    map<int, int> _shoots;
+    map<string, int> _score;
+    map<string, int> _shoots;
 
 public:
     int _getTime();
-    list<Team> _getTeamList();
+    vector<Team> _getTeams();
     bool _getMatchStatus();
 
-    void updateMatchStatus();
-    void updateMatchScore(map<int, int> newScore);
-    void updateMatchShoots(map<int, int> newShoots);
+    void startMatch();
+    void updateMatchScore(map<string, int> newScore);
+    void updateMatchShoots(map<string, int> newShoots);
 
-    Match(list<Team> teams);
+    Match(vector<Team> teams);
     ~Match();
 };

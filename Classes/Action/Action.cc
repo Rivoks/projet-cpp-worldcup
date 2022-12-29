@@ -96,7 +96,7 @@ bool Action::handleAction(PlayerATK playerAtk, PlayerDEF playerDef, PlayerGK pla
 
     else if (_playerRole == ATK && _botRole == DEF) // You are ATK vs DEF
     {
-        choices = chooseAction();
+        choices = chooseAction(0);                             // Can only dribble v.s. an DEF
         if (handleActionAtkDef(playerAtk, playerDef, choices)) // You passed the DEF, you are ATK vs GK
         {
             std::cout << "You have passed the defense!\n-"

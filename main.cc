@@ -1,12 +1,14 @@
 #include <iostream>
 #include <vector>
+#include <future>
 #include "Classes/Player/ATK/PlayerATK.hh"
 #include "Classes/Player/DEF/PlayerDEF.hh"
 #include "Classes/Player/GK/PlayerGK.hh"
 #include "Classes/Action/Action.hh"
 #include "Classes/Team/Team.hh"
+#include "Classes/Match/Match.hh"
 
-void createTeam()
+Team _createTeam()
 {
     PlayerATK ronaldo("Ronaldo", 7, 81, 92, 85);
     PlayerATK messi("Messi", 10, 91, 84, 88);
@@ -18,58 +20,57 @@ void createTeam()
     vector<PlayerDEF> def{ramos, hakimi};
 
     Team team(atk, def, bono, "Blue Dragon");
-    std::cout << team._getName() << std::endl;
-    std::cout << "GEN:" << team._getGenRate() << std::endl;
-    std::cout << "ATK:" << team._getAtkRate() << std::endl;
-    std::cout << "DEF:" << team._getDefRate() << std::endl;
-    std::cout << team._players.atk[0]._getName() << std::endl;
+    return team;
+    // std::cout << team._getName() << std::endl;
+    // std::cout << "GEN:" << team._getGenRate() << std::endl;
+    // std::cout << "ATK:" << team._getAtkRate() << std::endl;
+    // std::cout << "DEF:" << team._getDefRate() << std::endl;
+    // std::cout << team._players.atk[0]._getName() << std::endl;
 }
 
-void _game()
+void _runMatch(Match *match)
 {
-    PlayerATK ronaldo("Ronaldo", 7, 81, 92, 85);
-    PlayerDEF hakimi("Hakimi", 2, 95, 76, 78);
-    PlayerGK bono("Bono", 13, 79, 86);
+    int playerIndex = 0;
+    Team playerTeam = match->_getTeams()[0];
+    Team botTeam = match->_getTeams()[1];
 
-    int role = 0;
-    std::cout << "Pick a Role:\n"
-              << "0 - ATK\n"
-              << "1 - DEF\n"
-              << "2 - GK\n"
-              << std::endl;
-    std::cin >> role;
+    while (!match->_getMatchStatus())
+    {
+        if (playerIndex % 5 < 2)
+        {
+            PlayerATK player = playerTeam._players.atk[playerIndex % 2];
+            PlayerDEF bot = botTeam._players.def[playerIndex % 2];
+            PlayerGK gk = botTeam._players.gk;
 
-    if (role == 0) // Picked ATK
-    {
-        Action action1(ATK, DEF);
-        if (action1.startAction(ronaldo, hakimi, bono))
-            std::cout << "Goooooaaaaaal!" << std::endl;
-        else
-            std::cout << "Oh no! You missed this action..." << std::endl;
+            Action action(ATK, DEF);
+            if (action.startAction(player, bot, gk))
+                std::cout << "Goooooaaaaaal!" << std::endl;
+            else
+                std::cout << "Oh no! The opponent passed..." << std::endl;
+        }
+        std::cout << "\n==============\n"
+                  << std::endl;
     }
-    else if (role == 1) // Picked DEF
-    {
-        Action action1(DEF, ATK);
-        if (action1.startAction(ronaldo, hakimi, bono))
-            std::cout << "Goooooaaaaaal!" << std::endl;
-        else
-            std::cout << "Oh no! The opponent passed..." << std::endl;
-    }
-    else
-    {
-        Action action1(GK, ATK);
-        if (action1.startAction(ronaldo, hakimi, bono))
-            std::cout << "What a miraculous save!" << std::endl;
-        else
-            std::cout << "Goooaaaal! The opponent scored!" << std::endl;
-    }
+    std::cout << "Match is over!" << std::endl;
+}
+
+void _initMatch()
+{
+
+    Team team1 = _createTeam();
+    Team team2 = _createTeam();
+    vector<Team> teams{team1, team2};
+
+    Match match(teams);
+
+    auto f = std::async(&Match::startMatch, &match);
+
+    _runMatch(&match);
 }
 
 int main()
 {
-    // _game();
-
-    createTeam();
+    _initMatch();
 
     return 0;
 }

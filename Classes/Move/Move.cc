@@ -29,7 +29,13 @@ float Move::_getAccuracy() const
     return _accuracy;
 }
 
-Direction Move::pickDirection(int pick)
+bool Move::operator-(Move const &moveIA)
+{
+    return _accuracy - moveIA._getAccuracy() > 0;
+}
+
+/** Global Function */
+Direction pickDirection(int pick)
 {
     switch (pick)
     {

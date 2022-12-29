@@ -5,9 +5,13 @@ PlayerATK::PlayerATK(string name, int number, int pace, int shoot, int skill)
     _name = name;
     _number = number;
     _pace = pace;
+    _role = ATK;
     _shoot = shoot;
     _skill = skill;
     _rate = (pace + shoot + skill) / 3;
+
+    _directionName = "Dribble";
+    _actionName = "Shoot";
 };
 
 PlayerATK::~PlayerATK(){};
@@ -22,17 +26,30 @@ int PlayerATK::_getSkill() const
     return _skill;
 };
 
-bool PlayerATK::moveDribble(Direction direction, PlayerDEF playerDef)
+Move PlayerATK::playerDirection(Direction direction = RANDOM)
 {
-    std::srand(std::time(nullptr));
-    int random = std::rand();
 
-    return float(random % 100) / 100.0 < 0.5 + (playerDef - *this);
+    float accuracy = (_skill * 0.7 + _pace * 0.3) / 100.0;
+    if (direction == RANDOM)
+    {
+        Move newMove(accuracy);
+        return newMove;
+    }
+    Move newMove(direction, accuracy);
+    return newMove;
 };
 
-bool PlayerATK::moveShoot(Direction direction, PlayerGK playerGk)
+Move PlayerATK::playerAction(Direction direction = RANDOM)
 {
-    std::srand(std::time(nullptr));
+    float accuracy = (_skill * 0.2 + _pace * 0.1 + _shoot * 0.7) / 100.0;
+    Move newMove(direction, accuracy);
+
+    return newMove;
+}
+
+/**
+ * @brief
+ * std::srand(std::time(nullptr));
     int random = std::rand();
 
     Move moveGK(float((playerGk._getLoon()) / 100.0)); // Random direction for the GK and accuracy based on his stats
@@ -47,4 +64,5 @@ bool PlayerATK::moveShoot(Direction direction, PlayerGK playerGk)
         return float(random % 100) / 100.0 > 0.35 + (moveGK._getAccuracy() - moveAtk._getAccuracy());
 
     return float(random % 100) / 100.0 < 0.7 + (moveGK._getAccuracy() - moveAtk._getAccuracy()); // A big chance to score
-}
+ *
+ */

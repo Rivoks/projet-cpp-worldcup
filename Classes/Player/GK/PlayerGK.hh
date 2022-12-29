@@ -11,9 +11,11 @@ private:
     int _loon;
 
 public:
-    bool moveKeep(Direction direction, PlayerATK playerAtk);
     int _getLoon() const;
-    float operator-(PlayerATK const &playerAtk);
+
+    Move playerDirection(Direction direction);
+    Move playerAction(Direction direction);
+
     PlayerGK(string name, int number, int pace, int loon);
     ~PlayerGK();
 };

@@ -38,7 +38,15 @@ int main()
 
     PlayerATK player1 = players[entry];
 
-    int chooseDir;
+    int pickMove;
+    int pickDir;
+
+    std::cout << "Choose an action: \n"
+              << "0 - Dribble\n"
+              << "1 - Shoot\n"
+              << std::endl;
+
+    std::cin >> pickMove;
 
     std::cout << "Choose a direction to dribble: \n"
               << "0 - Left\n"
@@ -46,11 +54,21 @@ int main()
               << "2 - Right\n"
               << std::endl;
 
-    std::cin >> chooseDir;
+    std::cin >> pickDir;
 
-    bool action1 = player1.moveDribble(intToDirection(chooseDir), hakimi);
+    Move move1 = player1.pickMove(pickMove, pickDir);
+    Move move2 = hakimi.pickMove();
 
-    if (!action1)
+    std::cout << "Move1 Accuracy:\n"
+              << move1._getAccuracy()
+              << std::endl;
+
+    std::cout << "Move2 Accuracy:\n"
+              << move2._getAccuracy()
+              << std::endl;
+
+    /**
+     * if (move1 - move2)
     {
         std::cout << "Dribble has not passed!" << std::endl;
         return 0;
@@ -63,9 +81,11 @@ int main()
               << "1 - Center\n"
               << "2 - Right\n"
               << std::endl;
-    std::cin >> chooseDir;
+    std::cin >> pickDir;
 
-    bool action2 = player1.moveShoot(intToDirection(chooseDir), bono);
+    bool action2 = player1.moveShoot(intToDirection(pickDir), bono);
     std::cout << (action2 ? "GOOOOAAAAAL!" : "Shoot has not passed!") << std::endl;
+     *
+     */
     return 0;
 }

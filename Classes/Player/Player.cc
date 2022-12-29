@@ -19,3 +19,11 @@ int Player::_getRate() const
 {
     return _rate;
 }
+
+Move Player::pickMove(int action, int direction)
+{
+    if (action > 0)
+        return playerAction(pickDirection(direction));
+    else
+        return playerDirection(pickDirection(direction));
+}

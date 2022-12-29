@@ -15,8 +15,8 @@ public:
     int _getDef();
     int _getStamina();
 
-    virtual bool moveTackle(Direction direction, PlayerATK playerAtk);
-    bool moveHandle(PlayerATK playerAtk);
+    Move playerDirection(Direction direction);
+    Move playerAction(Direction direction);
 
     PlayerDEF(string name, int number, int pace, int def, int stamina);
     ~PlayerDEF();

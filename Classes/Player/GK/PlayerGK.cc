@@ -18,6 +18,33 @@ int PlayerGK::_getLoon() const
     return _loon;
 };
 
+Move PlayerGK::playerDirection(Direction direction = RANDOM)
+{
+
+    float accuracy = (_loon * 0.4 + _pace * 0.6) / 100.0;
+
+    if (direction == RANDOM)
+    {
+        Move newMove(accuracy);
+        return newMove;
+    }
+    Move newMove(direction, accuracy);
+    return newMove;
+};
+
+Move PlayerGK::playerAction(Direction direction = RANDOM)
+{
+    float accuracy = (_loon * 0.8 + _pace * 0.2) / 100.0;
+
+    Move newMove(direction, accuracy);
+
+    return newMove;
+}
+
+/**
+ * @brief
+ *
+ *
 bool PlayerGK::moveKeep(Direction direction, PlayerATK playerAtk)
 {
     std::srand(std::time(nullptr));
@@ -38,8 +65,5 @@ bool PlayerGK::moveKeep(Direction direction, PlayerATK playerAtk)
 
     return float(random % 100) / 100.0 < 0.1 + (moveGK._getAccuracy() - moveAtk._getAccuracy()); // A last chance to save the goal ...
 };
-
-// float PlayerGK::operator-(PlayerATK const &playerATK) // Init the operator - to compare stats and get a coefficient
-// {
-//     return float((_rate - playerATK._getShoot())) / 100.0;
-// }
+ *
+ */

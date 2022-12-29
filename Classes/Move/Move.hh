@@ -8,7 +8,10 @@ enum Direction
     LEFT,
     CENTER,
     RIGHT,
+    RANDOM,
 };
+
+Direction pickDirection(int pick);
 
 class Move
 {
@@ -20,9 +23,9 @@ public:
     Direction _getDirection() const;
     float _getAccuracy() const;
 
-    Direction pickDirection(int pick);
-
     Move(float accuracy);
     Move(Direction direction, float accuracy);
     ~Move();
+
+    bool operator-(Move const &moveIA);
 };

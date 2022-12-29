@@ -2,7 +2,7 @@ CC=g++
 CCFLAGS= -Wall
 EXEC=./exec
 
-MOVE_DIR=Classes/Player/Move
+MOVE_DIR=Classes/Move
 PLAYER_DIR=Classes/Player
 
 all: main.o move.o player.o

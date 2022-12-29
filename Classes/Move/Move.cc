@@ -11,7 +11,7 @@ Move::Move(float accuracy)
     srand(time(NULL));
     int random = rand();
 
-    _direction = pickDirection(random % 4);
+    _direction = pickDirection(random % 3);
     _accuracy = accuracy;
 }
 

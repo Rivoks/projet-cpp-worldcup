@@ -93,7 +93,8 @@ bool Action::handleAction(PlayerATK playerAtk, PlayerDEF playerDef, PlayerGK pla
         choices = chooseAction();
         if (handleActionAtkDef(playerAtk, playerDef, choices)) // You passed the DEF, you are ATK vs GK
         {
-            std::cout << "You have passed the defense!" << std::endl;
+            std::cout << "You have passed the defense!\n-"
+                      << std::endl;
             choices = chooseAction(1);
             _botRole = GK;
             return handleActionAtkGk(playerAtk, playerGk, choices);
@@ -174,13 +175,13 @@ bool Action::handleActionAtkGk(PlayerATK playerAtk, PlayerGK playerGk, vector<in
     float adjustment;
 
     if (_playerMove._getDirection() == _botMove._getDirection())
-        adjustment = _playerRole == ATK ? -0.06 : 0.12;
+        adjustment = 0.2;
     else if (_playerMove._getDirection() - _botMove._getDirection() == 1)
-        adjustment = _playerRole == ATK ? 0.02 : -0.05;
+        adjustment = 0.06;
     else
-        adjustment = _playerRole == ATK ? 0.9 : -0.9;
+        adjustment = -0.4;
 
-    _playerMove._setAccuracy(_playerMove._getAccuracy() + adjustment);
+    _playerMove._setAccuracy(_playerMove._getAccuracy() + (_playerRole == ATK ? -adjustment : adjustment));
 
     std::cout << _playerMove._getAccuracy()
               << " ( - ) "

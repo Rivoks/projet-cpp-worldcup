@@ -33,7 +33,10 @@ void _game()
     playerSelections.push_back(messi);
 
     int entry = 0;
-    std::cout << "Pick a Striker: Ronadlo(0) - Messi(1)" << std::endl;
+    std::cout << "Pick a Striker:\n"
+              << "0 - Ronaldo\n"
+              << "1 - Messi\n"
+              << std::endl;
     std::cin >> entry;
 
     PlayerATK player = playerSelections[entry];

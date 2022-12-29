@@ -13,13 +13,6 @@ class Team
 {
 private:
     int _teamId;
-    struct Players
-    {
-        vector<PlayerATK> atk;
-        vector<PlayerDEF> def;
-        PlayerGK gk;
-    } _players;
-
     string _name;
     int _genRate;
     int _atkRate;
@@ -31,6 +24,13 @@ public:
     int _getGenRate() const;
     int _getAtkRate() const;
     int _getDefRate() const;
+
+    struct Players
+    {
+        vector<PlayerATK> atk;
+        vector<PlayerDEF> def;
+        PlayerGK gk;
+    } _players;
 
     Team(vector<PlayerATK> atk, vector<PlayerDEF> def, PlayerGK gk, string name);
     ~Team();

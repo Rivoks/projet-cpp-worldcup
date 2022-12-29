@@ -22,6 +22,7 @@ void createTeam()
     std::cout << "GEN:" << team._getGenRate() << std::endl;
     std::cout << "ATK:" << team._getAtkRate() << std::endl;
     std::cout << "DEF:" << team._getDefRate() << std::endl;
+    std::cout << team._players.atk[0]._getName() << std::endl;
 }
 
 void _game()

@@ -8,10 +8,10 @@ Move::Move(Direction direction, float accuracy)
 
 Move::Move(float accuracy)
 {
-    std::srand(std::time(NULL));
-    int random = std::rand();
+    srand(time(NULL));
+    int random = rand();
 
-    _direction = pickDirection(random % 3);
+    _direction = pickDirection(random % 4);
     _accuracy = accuracy;
 }
 
@@ -22,6 +22,24 @@ Move::~Move()
 Direction Move::_getDirection() const
 {
     return _direction;
+}
+
+string Move::toString() const
+{
+    switch (_direction)
+    {
+    case LEFT:
+        return "LEFT";
+
+    case CENTER:
+        return "CENTER";
+
+    case RIGHT:
+        return "RIGHT";
+
+    default:
+        return "RANDOM";
+    };
 }
 
 float Move::_getAccuracy() const
@@ -50,7 +68,10 @@ Direction pickDirection(int pick)
     case 1:
         return CENTER;
 
-    default:
+    case 2:
         return RIGHT;
+
+    default:
+        return RANDOM;
     }
 }

@@ -20,9 +20,8 @@ Direction intToDirection(int input)
     }
 }
 
-int main()
+void _game()
 {
-    /** List of characters */
     PlayerATK ronaldo("Ronaldo", 7, 81, 92, 85);
     PlayerATK messi("Messi", 10, 85, 92, 91);
     PlayerDEF hakimi("Hakimi", 2, 95, 76, 78);
@@ -42,9 +41,14 @@ int main()
     Action action1(player._getRole(), hakimi._getRole());
 
     if (action1.startAction(player, hakimi, bono))
-        std::cout << "You have passed the defense!" << std::endl;
+        std::cout << "Goooooaaaaaal!" << std::endl;
     else
-        std::cout << "Defense stopped you!" << std::endl;
+        std::cout << "Oh no! You missed this action..." << std::endl;
+}
+
+int main()
+{
+    _game();
 
     return 0;
 }

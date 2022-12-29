@@ -16,9 +16,9 @@ private:
 
 public:
     vector<string> getActionNames();
-    vector<int> chooseAction();
+    vector<int> chooseAction(int move = -1);
 
-    bool handleAction(PlayerATK playerAtk, PlayerDEF playerDef, PlayerGK playerGK, vector<int> choices);
+    bool handleAction(PlayerATK playerAtk, PlayerDEF playerDef, PlayerGK playerGK);
     bool handleActionAtkDef(PlayerATK playerAtk, PlayerDEF playerDef, vector<int> choices);
     bool handleActionAtkGk(PlayerATK playerAtk, PlayerGK playerGk, vector<int> choices);
 

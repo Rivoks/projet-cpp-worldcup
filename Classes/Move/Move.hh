@@ -2,6 +2,10 @@
 #include <cstdlib>
 #include <ctime>
 #include <stddef.h>
+#include <string>
+#include <iostream>
+
+using namespace std;
 
 enum Direction
 {
@@ -22,6 +26,8 @@ private:
 public:
     Direction _getDirection() const;
     float _getAccuracy() const;
+    string toString() const;
+
     void _setAccuracy(float newAccuracy);
 
     Move(float accuracy);

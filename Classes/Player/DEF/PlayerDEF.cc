@@ -34,6 +34,7 @@ Move PlayerDEF::playerDirection(Direction direction = RANDOM)
         Move newMove(accuracy);
         return newMove;
     }
+
     Move newMove(direction, accuracy);
     return newMove;
 };
@@ -50,32 +51,3 @@ float PlayerDEF::operator-(PlayerATK const &playerAtk)
 {
     return float((_def - playerAtk._getSkill())) / 100.0;
 }
-
-/**
- * @brief
- *
- * bool PlayerDEF::moveTackle(Direction direction, PlayerATK playerAtk)
-{
-    std::srand(std::time(nullptr));
-    int random = std::rand();
-
-    Move moveAtk(float((playerAtk._getPace() + playerAtk._getSkill()) / 200.0));
-    Move moveDef(direction, float((_stamina + _def) / 200.0));
-
-    bool sameDir = moveDef._getDirection() == moveAtk._getDirection();
-
-    if (sameDir)
-        return float(random % 100) / 100.0 < 0.7 + (moveDef._getAccuracy() - moveAtk._getAccuracy());
-
-    return float(random % 100) / 100.0 < 0.15 + (moveDef._getAccuracy() - moveAtk._getAccuracy());
-};
-
-bool PlayerDEF::moveHandle(PlayerATK playerAtk)
-{
-    std::srand(std::time(nullptr));
-    int random = std::rand();
-
-    return float(random % 100) / 100.0 < 0.5 + (*this - playerAtk);
-};
- *
- */

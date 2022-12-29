@@ -23,30 +23,41 @@ Direction intToDirection(int input)
 void _game()
 {
     PlayerATK ronaldo("Ronaldo", 7, 81, 92, 85);
-    PlayerATK messi("Messi", 10, 85, 92, 91);
     PlayerDEF hakimi("Hakimi", 2, 95, 76, 78);
     PlayerGK bono("Bono", 13, 79, 86);
 
-    vector<PlayerATK> playerSelections;
-
-    playerSelections.push_back(ronaldo);
-    playerSelections.push_back(messi);
-
-    int entry = 0;
-    std::cout << "Pick a Striker:\n"
-              << "0 - Ronaldo\n"
-              << "1 - Messi\n"
+    int role = 0;
+    std::cout << "Pick a Role:\n"
+              << "0 - ATK\n"
+              << "1 - DEF\n"
+              << "2 - GK\n"
               << std::endl;
-    std::cin >> entry;
+    std::cin >> role;
 
-    PlayerATK player = playerSelections[entry];
-
-    Action action1(player._getRole(), hakimi._getRole());
-
-    if (action1.startAction(player, hakimi, bono))
-        std::cout << "Goooooaaaaaal!" << std::endl;
+    if (role == 0) // Picked ATK
+    {
+        Action action1(ATK, DEF);
+        if (action1.startAction(ronaldo, hakimi, bono))
+            std::cout << "Goooooaaaaaal!" << std::endl;
+        else
+            std::cout << "Oh no! You missed this action..." << std::endl;
+    }
+    else if (role == 1) // Picked DEF
+    {
+        Action action1(DEF, ATK);
+        if (action1.startAction(ronaldo, hakimi, bono))
+            std::cout << "Goooooaaaaaal!" << std::endl;
+        else
+            std::cout << "Oh no! The opponent passed..." << std::endl;
+    }
     else
-        std::cout << "Oh no! You missed this action..." << std::endl;
+    {
+        Action action1(GK, ATK);
+        if (action1.startAction(ronaldo, hakimi, bono))
+            std::cout << "What a miraculous save!" << std::endl;
+        else
+            std::cout << "Goooaaaal! The opponent scored!" << std::endl;
+    }
 }
 
 int main()

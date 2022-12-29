@@ -82,7 +82,13 @@ bool Action::handleAction(PlayerATK playerAtk, PlayerDEF playerDef, PlayerGK pla
 {
     vector<int> choices;
 
-    if (_playerRole == GK || (_playerRole == ATK && _botRole == GK)) // You are GK || You are ATK vs GK
+    if (_playerRole == GK) // You are GK
+    {
+        choices = chooseAction();
+        return handleActionAtkGk(playerAtk, playerGk, choices);
+    }
+
+    else if (_playerRole == ATK && _botRole == GK) // You are ATK vs GK
     {
         choices = chooseAction(1);
         return handleActionAtkGk(playerAtk, playerGk, choices);
@@ -105,6 +111,7 @@ bool Action::handleAction(PlayerATK playerAtk, PlayerDEF playerDef, PlayerGK pla
 
     else if (_playerRole == DEF && _botRole == ATK) // You are DEF vs ATK
     {
+        choices = chooseAction();
         bool res = handleActionAtkDef(playerAtk, playerDef, choices);
         if (res)
             std::cout << "You have blocked the offensive!" << std::endl;

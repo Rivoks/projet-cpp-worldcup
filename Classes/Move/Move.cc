@@ -52,9 +52,9 @@ void Move::_setAccuracy(float newAccuracy)
     _accuracy = newAccuracy;
 }
 
-bool Move::operator-(Move const &moveIA)
+bool Move::operator-(Move const &botMove)
 {
-    return _accuracy - moveIA._getAccuracy() > 0;
+    return _accuracy - botMove._getAccuracy() > 0;
 }
 
 /** Global Function */

@@ -36,7 +36,7 @@ void _runMatch(Match *match)
 
     while (!match->_getMatchStatus())
     {
-        if (playerIndex % 5 < 2)
+        if (playerIndex % 5 < 2) // TODO: ATK -> 0 or 1
         {
             PlayerATK player = playerTeam._players.atk[playerIndex % 2];
             PlayerDEF bot = botTeam._players.def[playerIndex % 2];
@@ -46,8 +46,33 @@ void _runMatch(Match *match)
             if (action.startAction(player, bot, gk))
                 std::cout << "Goooooaaaaaal!" << std::endl;
             else
-                std::cout << "Oh no! The opponent passed..." << std::endl;
+                std::cout << "Oh no! You missed this action..." << std::endl;
         }
+        else if (playerIndex % 5 < 4) // TODO: DEF -> 2 or 3
+        {
+            PlayerDEF player = playerTeam._players.def[playerIndex % 2];
+            PlayerATK bot = botTeam._players.atk[playerIndex % 2];
+            PlayerGK gk = botTeam._players.gk;
+
+            Action action(ATK, DEF);
+            if (action.startAction(bot, player, gk))
+                std::cout << "You have stopped to offensive!" << std::endl;
+            else
+                std::cout << "Oh no! You missed this action..." << std::endl;
+        }
+        else
+        {
+            PlayerATK player = botTeam._players.atk[playerIndex % 2];
+            PlayerDEF bot = botTeam._players.def[playerIndex % 2];
+            PlayerGK gk = playerTeam._players.gk;
+
+            Action action(ATK, DEF);
+            if (action.startAction(player, bot, gk))
+                std::cout << "You saved the ball!" << std::endl;
+            else
+                std::cout << "Oh no! You missed this action..." << std::endl;
+        }
+        playerIndex++; // TODO: playerIndex
         std::cout << "\n==============\n"
                   << std::endl;
     }

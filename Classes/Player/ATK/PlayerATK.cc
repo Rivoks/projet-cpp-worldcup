@@ -39,7 +39,13 @@ Move PlayerATK::playerDirection(Direction direction = RANDOM)
 Move PlayerATK::playerAction(Direction direction = RANDOM)
 {
     float accuracy = (_skill * 0.2 + _pace * 0.1 + _shoot * 0.7) / 100.0;
-    Move newMove(direction, accuracy);
 
+    if (direction == RANDOM)
+    {
+        Move newMove(accuracy);
+        return newMove;
+    }
+
+    Move newMove(direction, accuracy);
     return newMove;
 }

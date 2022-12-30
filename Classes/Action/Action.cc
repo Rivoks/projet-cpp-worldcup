@@ -30,8 +30,8 @@ vector<string> Action::getActionNames()
         return vect;
 
     default:
-        vect.push_back("Dive");
         vect.push_back("Jump");
+        vect.push_back("Dive");
         return vect;
     }
 }
@@ -183,6 +183,7 @@ bool Action::handleActionAtkGk(PlayerATK playerAtk, PlayerGK playerGk, vector<in
 
     if (_playerMove._getDirection() == _botMove._getDirection())
         adjustment = 0.2;
+    // TODO: Add absolute val below
     else if (_playerMove._getDirection() - _botMove._getDirection() == 1)
         adjustment = 0.06;
     else

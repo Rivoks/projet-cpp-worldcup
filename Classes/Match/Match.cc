@@ -5,7 +5,7 @@
 Match::Match(vector<Team> teams)
 {
     _teams = teams;
-    _time = 10;
+    _time = 30;
     _finish = false;
 
     _score = {{teams[0]._getName(), 0},

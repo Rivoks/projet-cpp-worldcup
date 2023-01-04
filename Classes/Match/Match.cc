@@ -2,7 +2,7 @@
 #include <chrono>
 #include <thread>
 
-Match::Match(vector<Team> teams, int time = 30)
+Match::Match(vector<Team> teams, int time)
 {
     _teams = teams;
     _time = time;

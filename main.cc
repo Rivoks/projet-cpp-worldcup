@@ -86,7 +86,7 @@ void _initMatch()
     Team team2 = _createTeam();
     vector<Team> teams{team1, team2};
 
-    Match match(teams);
+    Match match(teams, 120);
 
     auto f = std::async(&Match::startMatch, &match);
 

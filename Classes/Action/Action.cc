@@ -84,18 +84,22 @@ bool Action::handleAction(PlayerATK playerAtk, PlayerDEF playerDef, PlayerGK pla
 
     if (_playerRole == GK) // You are GK
     {
+        std::cout << "[" << playerGk._getName() << "]" << std::endl;
         choices = chooseAction();
         return handleActionAtkGk(playerAtk, playerGk, choices);
     }
 
     else if (_playerRole == ATK && _botRole == GK) // You are ATK vs GK
     {
+        std::cout << "[" << playerAtk._getName() << "]" << std::endl;
         choices = chooseAction(1);
         return handleActionAtkGk(playerAtk, playerGk, choices);
     }
 
     else if (_playerRole == ATK && _botRole == DEF) // You are ATK vs DEF
     {
+        std::cout << "[" << playerAtk._getName() << "]" << std::endl;
+
         choices = chooseAction(0);                             // Can only dribble v.s. an DEF
         if (handleActionAtkDef(playerAtk, playerDef, choices)) // You passed the DEF, you are ATK vs GK
         {
@@ -111,6 +115,8 @@ bool Action::handleAction(PlayerATK playerAtk, PlayerDEF playerDef, PlayerGK pla
 
     else if (_playerRole == DEF && _botRole == ATK) // You are DEF vs ATK
     {
+        std::cout << "[" << playerDef._getName() << "]" << std::endl;
+
         choices = chooseAction();
         bool res = handleActionAtkDef(playerAtk, playerDef, choices);
         if (res)

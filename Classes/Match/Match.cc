@@ -2,10 +2,10 @@
 #include <chrono>
 #include <thread>
 
-Match::Match(vector<Team> teams)
+Match::Match(vector<Team> teams, int time = 30)
 {
     _teams = teams;
-    _time = 30;
+    _time = time;
     _finish = false;
 
     _score = {{teams[0]._getName(), 0},

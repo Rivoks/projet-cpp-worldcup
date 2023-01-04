@@ -27,6 +27,6 @@ public:
     void updateMatchScore(map<string, int> newScore);
     void updateMatchShoots(map<string, int> newShoots);
 
-    Match(vector<Team> teams);
+    Match(vector<Team> teams, int time = 30);
     ~Match();
 };

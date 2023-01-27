@@ -2,15 +2,19 @@
 #include <chrono>
 #include <thread>
 
+
 Match::Match(vector<Team> teams, int time)
 {
     _teams = teams;
     _time = time;
     _finish = false;
 
+    _matchId = matchId;
+    matchId++;
+
     _score = {{teams[0]._getName(), 0},
               {teams[1]._getName(), 0}};
-
+ 
     _shoots = {{teams[0]._getName(), 0},
                {teams[1]._getName(), 0}};
 }
@@ -18,6 +22,7 @@ Match::Match(vector<Team> teams, int time)
 Match::~Match()
 {
 }
+
 
 int Match::_getTime()
 {
@@ -34,9 +39,28 @@ bool Match::_getMatchStatus()
     return _finish;
 }
 
-void Match::updateMatchScore(map<string, int> newScore)
+int Match::_getMatchId()
 {
-    _score = newScore;
+    return _matchId;
+}
+
+map<string, int> Match::_getScore() 
+{
+    return _score;
+}
+
+void Match::printScore() 
+{
+    for (const auto&[key, value] : _score) { 
+        cout << key << " " << value << endl;
+    }
+}
+
+void Match::updateMatchScore(int n)
+{
+    if (n>0) _score[_teams[0]._getName()] += 1;
+
+    else _score[_teams[1]._getName()] += 1;
 }
 
 void Match::updateMatchShoots(map<string, int> newShoots)

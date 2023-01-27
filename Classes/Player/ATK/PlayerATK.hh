@@ -21,5 +21,5 @@ public:
     Move playerAction(Direction direction);
 
     PlayerATK(string name, int number, int pace, int shoot, int skill);
-    virtual ~PlayerATK();
+    virtual ~PlayerATK(); // Virtual destructor
 };

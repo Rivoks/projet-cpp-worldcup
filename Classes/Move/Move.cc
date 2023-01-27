@@ -1,12 +1,12 @@
 #include "Move.hh"
 
-Move::Move(Direction direction, float accuracy)
+Move::Move(Direction direction, float accuracy) // If the direction is not RANDOM
 {
     _direction = direction;
     _accuracy = accuracy;
 }
 
-Move::Move(float accuracy)
+Move::Move(float accuracy) // If the direction is RANDOM
 {
     srand(time(NULL));
     int random = rand();
@@ -52,12 +52,12 @@ void Move::_setAccuracy(float newAccuracy)
     _accuracy = newAccuracy;
 }
 
-bool Move::operator-(Move const &botMove)
+bool Move::operator-(Move const &botMove) // This operator allow comparaison of the accuracy of the two players
 {
     return _accuracy - botMove._getAccuracy() > 0;
 }
 
-/** Global Function */
+/* Global Function */
 Direction pickDirection(int pick)
 {
     switch (pick)

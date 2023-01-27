@@ -4,7 +4,7 @@
 
 using namespace std;
 
-enum PlayerRole
+enum PlayerRole // The player can have three roles
 {
     ATK,
     DEF,
@@ -30,6 +30,6 @@ public:
 
     Move pickMove(int action = 0, int direction = RANDOM);
 
-    virtual Move playerDirection(Direction direction) = 0;
+    virtual Move playerDirection(Direction direction) = 0; // Direction and Action are virtual, they depend on the role of the player
     virtual Move playerAction(Direction direction) = 0;
 };

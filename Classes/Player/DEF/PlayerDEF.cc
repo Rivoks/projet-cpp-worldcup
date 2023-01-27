@@ -4,6 +4,7 @@
 
 PlayerDEF::PlayerDEF(string name, int number, int pace, int def, int stamina)
 {
+    // Same stats as the ATK
     _name = name;
     _role = DEF;
     _number = number;

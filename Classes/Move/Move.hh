@@ -7,7 +7,7 @@
 
 using namespace std;
 
-enum Direction
+enum Direction // The direction of a move can take three values, if it is Random, it takes randomly one of the three values
 {
     LEFT,
     CENTER,
@@ -15,12 +15,13 @@ enum Direction
     RANDOM,
 };
 
-Direction pickDirection(int pick);
+Direction pickDirection(int pick); // Function to select the Direction (in the enum)
 
 class Move
 {
 private:
-    Direction _direction;
+    // The move is based on a direction and on an accuracy
+    Direction _direction; 
     float _accuracy;
 
 public:

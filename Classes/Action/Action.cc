@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cmath>
 
 Action::Action(PlayerRole playerRole, PlayerRole botRole) : _playerMove(0), _botMove(0)
 {
@@ -43,7 +44,7 @@ vector<int> Action::chooseAction(int move)
 
     vector<string> actionNames = getActionNames();
 
-    if (pickMove < 0)
+    if (pickMove < 0) // You first choose the move
     {
         std::cout << "Choose an action: \n"
                   << "0 - " << actionNames[0] << "\n"
@@ -58,7 +59,7 @@ vector<int> Action::chooseAction(int move)
         exit(0);
     }
 
-    std::cout << "Choose a direction to " << actionNames[pickMove] << "\n"
+    std::cout << "Choose a direction to " << actionNames[pickMove] << "\n" // Then you have to choose the direction of your move
               << "0 - Left\n"
               << "1 - Center\n"
               << "2 - Right\n"
@@ -73,43 +74,43 @@ vector<int> Action::chooseAction(int move)
     return pickResults;
 }
 
-bool Action::startAction(PlayerATK playerAtk, PlayerDEF playerDef, PlayerGK playerGk)
+bool Action::startAction(PlayerATK playerAtk, PlayerDEF playerDef, PlayerGK playerGk) // Init the current action
 {
     return handleAction(playerAtk, playerDef, playerGk);
 }
 
-bool Action::handleAction(PlayerATK playerAtk, PlayerDEF playerDef, PlayerGK playerGk)
+bool Action::handleAction(PlayerATK playerAtk, PlayerDEF playerDef, PlayerGK playerGk) 
 {
-    vector<int> choices;
+    vector<int> choices; // All your choices are store in this vector
 
     if (_playerRole == GK) // You are GK
     {
-        std::cout << "[" << playerGk._getName() << "]" << std::endl;
-        choices = chooseAction();
-        return handleActionAtkGk(playerAtk, playerGk, choices);
+        std::cout << "[" << playerGk._getName() << "]" << std::endl; // Name of our player
+        choices = chooseAction(); // You have to choose which move you are going to do
+        return handleActionAtkGk(playerAtk, playerGk, choices); // Function that handle an action between an ATK and a GK, tells if there is a goal or not
     }
 
     else if (_playerRole == ATK && _botRole == GK) // You are ATK vs GK
     {
-        std::cout << "[" << playerAtk._getName() << "]" << std::endl;
-        choices = chooseAction(1);
-        return handleActionAtkGk(playerAtk, playerGk, choices);
+        std::cout << "[" << playerAtk._getName() << "]" << std::endl; // Name of our player
+        choices = chooseAction(1); // Choose the direction, when you are an ATK against a GK, you have to shoot !
+        return handleActionAtkGk(playerAtk, playerGk, choices); // Function that handle an action between an ATK and a GK, tells if there is a goal or not
     }
 
     else if (_playerRole == ATK && _botRole == DEF) // You are ATK vs DEF
     {
-        std::cout << "[" << playerAtk._getName() << "]" << std::endl;
+        std::cout << "[" << playerAtk._getName() << "]" << std::endl; // Name of our player
 
-        choices = chooseAction(0);                             // Can only dribble v.s. an DEF
-        if (handleActionAtkDef(playerAtk, playerDef, choices)) // You passed the DEF, you are ATK vs GK
+        choices = chooseAction(0);                             // You can only dribble vs a DEF
+        if (handleActionAtkDef(playerAtk, playerDef, choices)) // If you pass the DEF, you are ATK vs GK
         {
-            std::cout << "You have passed the defense!\n-"
+            std::cout << "Il est passé !! \n-"
                       << std::endl;
             choices = chooseAction(1);
             _botRole = GK;
             return handleActionAtkGk(playerAtk, playerGk, choices);
         }
-        std::cout << "Defense stopped you!" << std::endl;
+        std::cout << "Il a été stoppé comme un enfant de 5 ans!" << std::endl;
         return false;
     }
 
@@ -120,7 +121,7 @@ bool Action::handleAction(PlayerATK playerAtk, PlayerDEF playerDef, PlayerGK pla
         choices = chooseAction();
         bool res = handleActionAtkDef(playerAtk, playerDef, choices);
         if (res)
-            std::cout << "You have blocked the offensive!" << std::endl;
+            std::cout << "Le défenseur a fait le boulot!" << std::endl;
         return res;
     }
 
@@ -130,7 +131,7 @@ bool Action::handleAction(PlayerATK playerAtk, PlayerDEF playerDef, PlayerGK pla
 
 bool Action::handleActionAtkDef(PlayerATK playerAtk, PlayerDEF playerDef, vector<int> choices)
 {
-
+    // This function is almost the same as handleActionAtkGk
     float adjustment;
 
     if (_playerRole == ATK)
@@ -149,7 +150,7 @@ bool Action::handleActionAtkDef(PlayerATK playerAtk, PlayerDEF playerDef, vector
     }
     else
     {
-        std::cerr << "Wrong handle action used (one of two players is not ATK/DEF" << std::endl;
+        std::cerr << "Wrong handle action used (one of two players is not ATK/DEF)" << std::endl;
         exit(0);
     }
 
@@ -167,37 +168,38 @@ bool Action::handleActionAtkDef(PlayerATK playerAtk, PlayerDEF playerDef, vector
 
 bool Action::handleActionAtkGk(PlayerATK playerAtk, PlayerGK playerGk, vector<int> choices)
 {
-    if (_playerRole == ATK)
+    if (_playerRole == ATK) // If you are an ATK
     {
-        std::cout << playerAtk._getName() << " vs " << playerGk._getName() << std::endl;
-        _playerMove = playerAtk.pickMove(choices[0], choices[1]);
-        _botMove = playerGk.pickMove();
+        std::cout << playerAtk._getName() << " vs " << playerGk._getName() << std::endl; // Print the clash
+        _playerMove = playerAtk.pickMove(choices[0], choices[1]); // Move that you picked before
+        _botMove = playerGk.pickMove(); // Random move for the "bot"
     }
-    else if (_playerRole == GK)
+    else if (_playerRole == GK) // If you are the GK
     {
-        std::cout << playerGk._getName() << " vs " << playerAtk._getName() << std::endl;
-        _playerMove = playerGk.pickMove(choices[0], choices[1]);
-        _botMove = playerAtk.pickMove();
+        std::cout << playerGk._getName() << " vs " << playerAtk._getName() << std::endl; // Print the clash
+        _playerMove = playerGk.pickMove(choices[0], choices[1]); // Move that you picked before
+        _botMove = playerAtk.pickMove(); // Random move for the "bot"
     }
     else
     {
-        std::cerr << "Wrong handle action used (one of two players is not ATK/GK" << std::endl;
+        std::cerr << "Wrong handle action used (one of two players is not ATK/GK)" << std::endl;
         exit(0);
     }
 
-    float adjustment;
+    float adjustment; // The success of an action depend on the stat but also of your choices
 
-    if (_playerMove._getDirection() == _botMove._getDirection())
+    if (_playerMove._getDirection() == _botMove._getDirection()) // If you choose the right move, there is an adjustement of 20%
         adjustment = 0.2;
-    // TODO: Add absolute val below
-    else if (_playerMove._getDirection() - _botMove._getDirection() == 1)
+
+    else if (abs(_playerMove._getDirection() - _botMove._getDirection()) == 1) // If you are wrong but not too far from the ball, it stills a chance to succeed
         adjustment = 0.06;
-    else
+        
+    else // If you are totally wrong, there is a malus. Very hard to succeed...
         adjustment = -0.4;
 
     _playerMove._setAccuracy(_playerMove._getAccuracy() + (_playerRole == ATK ? -adjustment : adjustment));
 
-    std::cout << _playerMove._getAccuracy()
+    std::cout << _playerMove._getAccuracy() // We print the final stats 
               << " ( - ) "
               << _botMove._getAccuracy()
               << " • bot: "

@@ -64,6 +64,22 @@
     "vector": "cpp",
     "algorithm": "cpp",
     "thread": "cpp",
-    "future": "cpp"
-  }
+    "future": "cpp",
+    "bit": "cpp",
+    "condition_variable": "cpp",
+    "deque": "cpp",
+    "numbers": "cpp",
+    "numeric": "cpp",
+    "queue": "cpp",
+    "random": "cpp",
+    "semaphore": "cpp",
+    "*.tcc": "cpp",
+    "functional": "cpp",
+    "iterator": "cpp",
+    "memory_resource": "cpp",
+    "utility": "cpp",
+    "stop_token": "cpp",
+    "cinttypes": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }

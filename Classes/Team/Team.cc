@@ -39,3 +39,21 @@ int Team::_getGenRate() const
 {
     return _genRate;
 }
+
+void Team::_printPlayers() const
+{
+    cout << "Les joueurs de l'équipe "
+         << _name
+         << " sont :"
+         << endl
+         << _players.atk[0]._getName()
+         << endl
+         << _players.atk[1]._getName()
+         << endl
+         << _players.def[0]._getName()
+         << endl
+         << _players.def[1]._getName()
+         << endl
+         << _players.gk._getName()
+         << endl;
+}

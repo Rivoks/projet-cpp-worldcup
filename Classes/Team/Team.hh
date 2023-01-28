@@ -24,6 +24,7 @@ public:
     int _getGenRate() const;
     int _getAtkRate() const;
     int _getDefRate() const;
+    void _printPlayers() const;
 
     struct Players
     {
